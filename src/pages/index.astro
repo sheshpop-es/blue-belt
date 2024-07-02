@@ -1,22 +1,172 @@
 ---
----
+import { Image } from 'astro:assets';
+import Fernando from "../../src/images/fernando-alonso-aston-martin_98.jpg";
+import Barra from "../components/barra.astro";
+import MinuaturAD from "../../src/images/miniatura/abu_dhabi.jpg"
+import miniaturaGJ from "../../src/images/miniatura/Grosjeans_the_man_on_fire.jpg";
+import Espacio from "../components/espacio.astro"
+import SemiCircle from "../components/index/semicircle.astro";
+import SemiCircleRed from "../components/index/semicirclered.astro";
+import Cuadradocafe from "../components/index/cuadradocafe.astro";
+import Cuadradocafef from "../components/index/cuadradocafe copy.astro";
+import EspacioText from "../components/espaciotext.astro";
+import ListaSeason from "../components/componenteseason/lista.astro";
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} >
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>ME QUIERO PEGAR UN TIRO</h1>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+---
+<body>
+    <Barra />
+</body>
+
+
+<div style="position: relative;">
+    <Image class='fernando' src={Fernando} alt="El nano" />
+    <p style="position: absolute; top: 290px; left: 699px; color: rgb(255, 255, 255); font-size: 75px;">
+      Welcome
+    </p>
+</div>
     
-    <h1>My Astro Site</h1>
-    <h1>My Astro Learning Blog</h1>
-    <p>This is where I will post about my journey learning Astro.</p>
-  </body>
-</html>
+<div>
+    <h1></h1>
+</div>
+
+<div> 
+    <a href="https://www.youtube.com/watch?v=7YMjw2sjXqU">
+    <Image src={miniaturaGJ} class="gj" alt="grosjean" style="width: 620px; height: 325px; position: relative; left: 815px; top: 39px;"></Image>
+    </a>
+</div>
+<div> 
+    <a href="https://www.youtube.com/watch?v=7QJ-N-AQJYc&t">
+    <Image src={MinuaturAD} class="abu_dhabi" alt="abu dhabi" style="width: 620px; height: 325px; position: relative; left: 50px; top: -290px;"></Image>
+    </a>
+</div>
+
+
+<div class="zapatos">
+    <div class="text">¡Los Mejores Momentos De la Final De Formula 1 En Abu Dhabi!<Espacio></Espacio>Una de las finales mas reñida de la formula uno en 2021 en abu dhabi para ver haga click en la foto<Espacio></Espacio>
+        en donde Hamilton y Verstappen estaban empatado con 370,5 puntos, en esta final reñida se vio quien se merecio !SU CAMPEONATO MUNDIAL!
+    </div>
+<div class="zapatos.square" style="width: 620px; height: 500px; position: relative; left: 765px; top: 0px; background-color: #000000;" >
+    <div class="text">!OH DIOS MIO, HAY FUEGO!<Espacio></Espacio>Que haya fuego en accidente es preucupante pero<Espacio></Espacio>
+        !EL COCHE SE HAYA PARTIDO A LA MITAD! eso si es mas preucupante<Espacio></Espacio>revisa la Historia de Romain Grosjean en 2020 apretando en la foto
+    </div>
+    </div>
+</div>
+<div class="ultimo">Ultimos resultados</div>
+<div>
+    <div class="square" style="position: relative; left: 240px; top: 0px;"></div>
+      <SemiCircle></SemiCircle>
+      <SemiCircleRed></SemiCircleRed>
+      <Cuadradocafe></Cuadradocafe>
+      <SemiCircleRed></SemiCircleRed>
+      <Cuadradocafef></Cuadradocafef> 
+      <ul>
+        <li>Grand prix <EspacioText></EspacioText></li>
+        <li>Date <EspacioText></EspacioText></li>
+        <li>Winner <EspacioText></EspacioText></li>
+        <li>Constructor <EspacioText></EspacioText></li>
+        <li>laps <EspacioText></EspacioText></li>
+        <li>Time</li>
+    </ul>
+    <div class="lista">Austrian Grand Prix &nbsp; 2024-03-02 &nbsp; George Russell <EspacioText></EspacioText>Mercedes<EspacioText></EspacioText><EspacioText></EspacioText>71<EspacioText></EspacioText>1:24:22.798 </div>
+    
+<ListaSeason number="2" ></ListaSeason>
+
+
+</div>
+</div>
+
+
+
+
+  
+
+
+
+<style> 
+h1{
+    text-align: center;
+}
+
+.square {
+  border: 13px solid #cc0000; /* Borde sin relleno */
+  border-radius: 10px;
+  width: 990px;
+  height: 550px;
+}
+
+.patata{
+    position: relative;
+    left: 300px;
+    top: -870px;
+    font-size: 30px;
+}
+
+.zapatos {
+    width: 620px;
+    height: 500px;
+    position: relative;
+    left: 50px;
+    top: -300px;
+    background-color: #000000;
+}
+
+ul li {
+    display: inline;
+    position: relative;
+    top: -878px;
+    left: 250px;
+    font-size: 25px;
+}
+
+.lista{
+    display: inline;
+    position: relative;
+    top: -870px;
+    left: 285px;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .zapatos,
+    .zapatos.square {
+        width: 100%; /* Otra opción es usar porcentajes */
+        height: auto; /* Para mantener la proporción */
+        left: 0;
+        top: 0;
+    }
+}
+
+.ultimo{
+    font-size: 50px;
+    position: relative;
+    top: 90px;
+    left: 550px;
+    color: rgb(148, 53, 53);
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+div p{
+    max-width: 100%;
+    height: auto;
+    font-size: 100px;
+    
+}
+.fernando {
+    max-width: 100%;
+    height: auto;
+    filter: brightness(50%);
+}
+</style>

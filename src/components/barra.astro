@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets';
+import logo from "../../src/images/logof1.png";
+---
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 unofficial page</title>
+</head>
+<body>
+    <ul>
+        <Image src={logo} alt="Un pájaro sentado sobre un nido de huevos." height={25} />
+        <button class="menu">abrir</button>
+        <li><a href="/">Home </a></li>
+        <li><a href="/seasons">Season</a></li>
+        <li><a href="/teams">Teams </a></li>
+        <li><a href="/calendar">Calendario</a></li>
+        <li><a href="/about">about us</a></li>
+        <form class="form" action="/buscar" method="get">
+            <input type="text" placeholder="Buscar..." name="q">
+            <button type="submit">Buscar</button>
+        </form>
+    </ul>
+</body>
+  
+<style>
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica;
+}
+image {
+    padding: 100px;
+}
+body{
+      background-color: white;
+  }
+ul{
+    list-style: none;
+    background-color: red;
+    text-align: start;
+}
+ul li{
+    display: inline-block;
+    position: relative;
+}
+ul li a{
+    display: block;
+    padding: 20px 20px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    text-align: start;
+}
+  
+ul li a:hover{
+    background: #222;
+    transition: .9s;
+}
+form {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+  
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px; /* Ajusta el ancho según tus necesidades */
+}
+  
+button {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    filter: brightness(50%);
+}
+  
+.contenedor {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+    
+.texto-encima {
+    position: absolute;
+    top: 400px;
+    left: 585px;
+    height: auto;
+    color: white;
+    font: Helvetica;
+    font-size: 100px;
+      /* Puedes ajustar las coordenadas según tus necesidades */
+}
+  
+.menu {
+    display: none;
+}
+  
+@media screen and (max-width: 750px) {
+    ul li a{
+          display: none;
+     }
+    ul form{
+          display: none;
+    }
+    .menu{
+        display: block;
+        padding: 10px 20px;
+    }
+ }
+</style>

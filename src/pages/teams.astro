@@ -1,22 +1,37 @@
 ---
+import Barra from "../components/barra.astro";
+import { Image } from "astro:assets";
+import Team from "../../src/images/teams2.jpg";
 ---
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} >
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>ME QUIERO PEGAR UN TIRO</h1>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+<Barra />
+<div>
+    <div style="position: relative;">
+        <Image src={Team} alt="teams" height={1000}  />
+        <p style="position: absolute; top: 290px; left: 605px; color: rgb(255, 255, 255); font-size: 75px;">
+          Teams
+        </p>
+    </div>
     
-    <h1>My Astro Site</h1>
-    <h1>My Astro Learning Blog</h1>
-    <p>This is where I will post about my journey learning Astro.</p>
-  </body>
-</html>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    div p{
+        font: Helvetica;
+        font-size: 100px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        filter: brightness(50%);
+    }
+    </style>

@@ -1,0 +1,63 @@
+---
+const {number, name ,points, Constructor} = Astro.props
+---
+<ul>
+    <li>
+        <span class="number">{number}</span>
+        <span class="name">{name}</span>
+        <span class="Constructor">{Constructor}</span>
+        <span class="Points">{points}</span>
+    </li>
+</ul>
+
+<style>
+
+
+body{
+    maring: 0;
+    padding: 0;
+}
+
+.elipse{
+position: absolute;
+width: 152px;
+height: 40px;
+
+background: #FFFFFF;
+}
+
+ul{
+    position: relative;
+    width: 800px;
+    margin: 0px auto 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+ul li{
+    display: flex;
+    background:  rgba(228, 137, 117, 0.885);
+    padding: 10px 20px;
+    color: black;
+    margin: 5px 0px;
+    transition: .5s;
+}
+
+ul li span:nth-child(1){
+    width: 30px;
+}
+
+
+ul li span:nth-child(2){
+    width: 300px;
+}
+
+ul li span:nth-child(3){
+    width: 400px;
+}
+
+
+ul li:hover{
+    transform: scale(1.06);
+}
+
+</style>
