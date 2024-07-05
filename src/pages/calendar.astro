@@ -1,14 +1,14 @@
 ---
 import Barra from "../components/barra.astro";
 
-
-
-const response = await fetch('https://ergast.com/api/f1/2024/results.json')
-const data = await response.json()
-
-
-
 ---
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content={Astro.generator}>
+    <title>F1 unofficial page</title>
+</head>
 <Barra />
 
 

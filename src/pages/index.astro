@@ -10,17 +10,24 @@ import SemiCircleRed from "../components/index/semicirclered.astro";
 import Cuadradocafe from "../components/index/cuadradocafe.astro";
 import Cuadradocafef from "../components/index/cuadradocafe copy.astro";
 import EspacioText from "../components/espaciotext.astro";
-import ListaSeason from "../components/componenteseason/lista.astro";
+import Lista from "../components/componenteseason/lista.astro";
 
 ---
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content={Astro.generator}>
+    <title>F1 unofficial page</title>
+</head>
 <body>
     <Barra />
 </body>
 
-
+<body>
 <div style="position: relative;">
     <Image class='fernando' src={Fernando} alt="El nano" />
-    <p style="position: absolute; top: 290px; left: 699px; color: rgb(255, 255, 255); font-size: 75px;">
+    <p style="position: absolute; top: 290px; left: 599px; color: rgb(255, 255, 255); font-size: 75px;">
       Welcome
     </p>
 </div>
@@ -51,7 +58,8 @@ import ListaSeason from "../components/componenteseason/lista.astro";
     </div>
     </div>
 </div>
-<div class="ultimo">Ultimos resultados</div>
+</body>
+<div class="ultimo">Últimos resultados</div>
 <div>
     <div class="square" style="position: relative; left: 240px; top: 0px;"></div>
       <SemiCircle></SemiCircle>
@@ -68,14 +76,16 @@ import ListaSeason from "../components/componenteseason/lista.astro";
         <li>Time</li>
     </ul>
     <div class="lista">Austrian Grand Prix &nbsp; 2024-03-02 &nbsp; George Russell <EspacioText></EspacioText>Mercedes<EspacioText></EspacioText><EspacioText></EspacioText>71<EspacioText></EspacioText>1:24:22.798 </div>
-    
-<ListaSeason number="2" ></ListaSeason>
 
 
+
+<div class="burger">
+    <Lista number="1" name="Max Verstappen"  Constructor="Red bull" points="237" ></Lista>
+    <Lista number="2" name="lando Norris"  Constructor="Mclaren" points="156" ></Lista>
+    <Lista number="3" name="Chares leclerc"  Constructor="Ferrari" points="150" ></Lista>
+    <Lista number="4" name="Carlos Sainz"  Constructor="ferrari" points="135" ></Lista>
+    <Lista number="5" name="Sergio Perez"  Constructor="Red bull" points="118" ></Lista>
 </div>
-</div>
-
-
 
 
   
@@ -86,6 +96,7 @@ import ListaSeason from "../components/componenteseason/lista.astro";
 h1{
     text-align: center;
 }
+
 
 .square {
   border: 13px solid #cc0000; /* Borde sin relleno */
@@ -138,12 +149,15 @@ ul li {
     }
 }
 
-.ultimo{
+.ultimo {
     font-size: 50px;
     position: relative;
     top: 90px;
-    left: 550px;
+    margin-left: auto;
+    margin-right: auto;
     color: rgb(148, 53, 53);
+    max-width: 50%;
+    transform: translateX(2%);
 }
 
 .text {
@@ -169,4 +183,11 @@ div p{
     height: auto;
     filter: brightness(50%);
 }
+
+.burger{
+    position: relative; 
+    left: 0px; 
+    top: -400px;
+}
+
 </style>

@@ -2,13 +2,7 @@
 import { Image } from 'astro:assets';
 import logo from "../../src/images/logof1.png";
 ---
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content={Astro.generator}>
-    <title>F1 unofficial page</title>
-</head>
+
 <body>
     <ul>
         <Image src={logo} alt="Un pájaro sentado sobre un nido de huevos." height={25} />
@@ -16,6 +10,7 @@ import logo from "../../src/images/logof1.png";
         <li><a href="/">Home </a></li>
         <li><a href="/seasons">Season</a></li>
         <li><a href="/teams">Teams </a></li>
+        <li><a href="/drivers">Drivers</a></li>
         <li><a href="/calendar">Calendario</a></li>
         <li><a href="/about">about us</a></li>
         <form class="form" action="/buscar" method="get">

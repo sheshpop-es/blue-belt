@@ -1,8 +1,15 @@
 ---
 import Barra from "../components/barra.astro";
 import { Image } from "astro:assets";
-import Team from "../../src/images/teams2.jpg";
+import Team from "../../src/images/Teams/teams2.jpg";
 ---
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content={Astro.generator}>
+    <title>F1 unofficial page</title>
+</head>
 <Barra />
 <div>
     <div style="position: relative;">
@@ -15,13 +22,6 @@ import Team from "../../src/images/teams2.jpg";
 </div>
 
 
-
-
-
-
-
-
-
 <style>
     div p{
         font: Helvetica;
@@ -32,4 +32,9 @@ import Team from "../../src/images/teams2.jpg";
         height: auto;
         filter: brightness(50%);
     }
-    </style>
+body{
+    background-color: red;
+    
+}
+
+</style>
