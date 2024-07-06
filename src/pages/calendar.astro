@@ -1,17 +1,28 @@
 ---
-import Barra from "../components/barra.astro";
+// src/pages/index.astro
 
+import { fetchData } from "../api/api_prueba";
+
+let data;
+let error;
+
+try {
+  data = await fetchData();
+} catch (e) {
+  error = e;
+}
 ---
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content={Astro.generator}>
-    <title>F1 unofficial page</title>
-</head>
-<Barra />
 
-
-
-</body>
-
+<html>
+  <head>
+    <title>Mi Proyecto Astro</title>
+  </head>
+  <body>
+    <h1>Datos desde una API</h1>
+    {error ? (
+      <p>Error al cargar los datos: {error.message}</p>
+    ) : (
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    )}
+  </body>
+</html>

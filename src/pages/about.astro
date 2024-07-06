@@ -1,140 +1,26 @@
----
-import Barra from "../components/barra.astro";
-import DriversList from "../components/about/DriverList.jsx";
-
-
----
-
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API en HTML</title>
+</head>
 <body>
-  <header>
-    <nav>
-      <input type="checkbox" id="menu-toggle">
-      <label for="menu-toggle" class="menu-burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      <ul class="menu">
-        <li><a href="/">Home </a></li>
-        <li><a href="/seasons">Season</a></li>
-        <li><a href="/teams">Constructor </a></li>
-        <li><a href="/drivers">Drivers</a></li>
-        <li><a href="/calendar">Calendario</a></li>
-        <li><a href="/about">about us</a></li>
-      </ul>
-    </nav>
-  </header>
+    <h1>Fetch API en HTML</h1>
+
+    <script>
+        // Ejemplo de uso de Fetch API para obtener datos de una API
+        fetch('https://ergast.com/api/f1/2024/driverStandings.json')
+            .then(response => response.json())
+            .then(data => {
+                // Manipular los datos recibidos
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+    </ul>
+    
 </body>
 </html>
-
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content={Astro.generator}>
-    <title>F1 unofficial page</title>
-</head>
-  <body>
-    <h1>Renderizar Múltiples Rectángulos</h1>
-    <DriversList />
-  </body>
-</html>
-
-<style>
-  
-/* styles.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-
-.menu-burger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.menu-burger span {
-  background-color: white;
-  border-radius: 2px;
-  display: block;
-  height: 4px;
-  margin: 6px 0;
-  transition: 0.4s;
-  width: 25px;
-}
-
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  margin: 0;
-}
-
-.menu a {
-  color: white;
-  text-decoration: none;
-}
-
-input[type="checkbox"] {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .menu-burger {
-    display: flex;
-  }
-
-  .menu {
-    display: none;
-    flex-direction: column;
-    background-color: #333;
-    position: absolute;
-    top: 50px;
-    right: 300px;
-    width: 200px;
-  }
-
-  input[type="checkbox"]:checked ~ .menu {
-    display: flex;
-  }
-
-  .menu li {
-    margin: 10px 0;
-  }
-}
-
-input[type="checkbox"]:checked + .menu-burger span:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-input[type="checkbox"]:checked + .menu-burger span:nth-child(2) {
-  opacity: 0;
-}
-
-input[type="checkbox"]:checked + .menu-burger span:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-</style>
