@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch API en HTML</title>
-</head>
-<body>
-    <h1>Fetch API en HTML</h1>
-
-    <script>
-        // Ejemplo de uso de Fetch API para obtener datos de una API
-        fetch('https://ergast.com/api/f1/2024/driverStandings.json')
-            .then(response => response.json())
-            .then(data => {
-                // Manipular los datos recibidos
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    </script>
-    </ul>
-    
-</body>
-</html>
+---
+import Barra from "../components/barra.astro"
+---
+<Barra></Barra>
