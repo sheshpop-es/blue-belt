@@ -4,14 +4,7 @@ import Fernando from "../../src/images/fernando-alonso-aston-martin_98.jpg";
 import Barra from "../components/barra.astro";
 import MinuaturAD from "../../src/images/miniatura/abu_dhabi.jpg"
 import miniaturaGJ from "../../src/images/miniatura/Grosjeans_the_man_on_fire.jpg";
-import Espacio from "../components/espacio.astro"
-import SemiCircle from "../components/index/semicircle.astro";
-import SemiCircleRed from "../components/index/semicirclered.astro";
-import Cuadradocafe from "../components/index/cuadradocafe.astro";
-import Cuadradocafef from "../components/index/cuadradocafe copy.astro";
-import EspacioText from "../components/espaciotext.astro";
-import Lista from "../components/componenteseason/lista.astro";
-
+import "../../src/components/carrera.css"
 ---
 <head>
     <meta charset="utf-8">
@@ -49,61 +42,96 @@ import Lista from "../components/componenteseason/lista.astro";
 
 
 <div class="zapatos">
-    <div class="text">¡Los Mejores Momentos De la Final De Formula 1 En Abu Dhabi!<Espacio></Espacio>Una de las finales mas reñida de la formula uno en 2021 en abu dhabi para ver haga click en la foto<Espacio></Espacio>
+    <div class="text">¡Los Mejores Momentos De la Final De Formula 1 En Abu Dhabi!<br>Una de las finales mas reñida de la formula uno en 2021 en abu dhabi para ver haga click en la foto<br>
         en donde Hamilton y Verstappen estaban empatado con 370,5 puntos, en esta final reñida se vio quien se merecio !SU CAMPEONATO MUNDIAL!
     </div>
 <div class="zapatos.square" style="width: 620px; height: 500px; position: relative; left: 765px; top: 0px; background-color: #000000;" >
-    <div class="text">!OH DIOS MIO, HAY FUEGO!<Espacio></Espacio>Que haya fuego en accidente es preucupante pero<Espacio></Espacio>
-        !EL COCHE SE HAYA PARTIDO A LA MITAD! eso si es mas preucupante<Espacio></Espacio>revisa la Historia de Romain Grosjean en 2020 apretando en la foto
+    <div class="text">!OH DIOS MIO, HAY FUEGO!<br>Que haya fuego en accidente es preucupante pero<br>
+        !EL COCHE SE HAYA PARTIDO A LA MITAD! eso si es mas preucupante<br>revisa la Historia de Romain Grosjean en 2020 apretando en la foto
     </div>
     </div>
 </div>
 </body>
-<div class="ultimo">Últimos resultados</div>
-<div>
-    <div class="square" style="position: relative; left: 240px; top: 0px;"></div>
-      <SemiCircle></SemiCircle>
-      <SemiCircleRed></SemiCircleRed>
-      <Cuadradocafe></Cuadradocafe>
-      <SemiCircleRed></SemiCircleRed>
-      <Cuadradocafef></Cuadradocafef> 
-      <ul>
-        <li>Grand prix <EspacioText></EspacioText></li>
-        <li>Date <EspacioText></EspacioText></li>
-        <li>Winner <EspacioText></EspacioText></li>
-        <li>Constructor <EspacioText></EspacioText></li>
-        <li>laps <EspacioText></EspacioText></li>
-        <li>Time</li>
-    </ul>
-    <div class="lista">Austrian Grand Prix &nbsp; 2024-03-02 &nbsp; George Russell <EspacioText></EspacioText>Mercedes<EspacioText></EspacioText><EspacioText></EspacioText>71<EspacioText></EspacioText>1:24:22.798 </div>
+
+<body>
+    <div class="container">
+        <h1>Resultado de la ultima carrera de F1</h1>
+        <div id="results" class="result-list"></div>
+    </div>
+    <script>
+        let results;
+
+fetch('https://ergast.com/api/f1/current/last/results.json')
+    .then(response => response.json())
+    .then(data => {
+        results = data.MRData.RaceTable.Races;
+        displayResults(results);
+    });
+
+const fetchDriverDetails = (driverId) => {
+    return fetch(`https://ergast.com/api/f1/drivers/${driverId}.json`)
+        .then(response => response.json())
+        .then(data => {
+            return data.MRData.DriverTable.Drivers[0];
+        });
+}
 
 
+const displayResults = async (results) => {
+    const resultsContainer = document.getElementById('results');
+    for (let race of results) {
+        for (let result of race.Results) {
+            let driverDetails = await fetchDriverDetails(result.Driver.driverId);
+            let resultDiv = document.createElement('div');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = `
+                <h3>${race.raceName} - ${result.position}</h3>
+                <p>Piloto: ${driverDetails.givenName} ${driverDetails.familyName}</p>
+                <p>Fecha de Nacimiento: ${driverDetails.dateOfBirth}</p>
+                <p>Nacionalidad: ${driverDetails.nationality}</p>
+                <p>Constructor: ${result.Constructor.name}</p>
+                <p>Vueltas: ${result.laps}</p>
+                <p>Tiempo: ${result.Time ? result.Time.time : 'N/A'}</p>
+            `;
+            resultsContainer.appendChild(resultDiv);
+        }
+    }
+}
 
-<div class="burger">
-    <Lista number="1" name="Max Verstappen"  Constructor="Red bull" points="237" ></Lista>
-    <Lista number="2" name="lando Norris"  Constructor="Mclaren" points="156" ></Lista>
-    <Lista number="3" name="Chares leclerc"  Constructor="Ferrari" points="150" ></Lista>
-    <Lista number="4" name="Carlos Sainz"  Constructor="ferrari" points="135" ></Lista>
-    <Lista number="5" name="Sergio Perez"  Constructor="Red bull" points="118" ></Lista>
-</div>
+    </script>
 
-
-  
-
-
+</body>
+</html>
 
 <style> 
-h1{
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+.result-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.result {
+    background-color: white;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
     text-align: center;
 }
 
-
-.square {
-  border: 13px solid #cc0000; /* Borde sin relleno */
-  border-radius: 10px;
-  width: 990px;
-  height: 550px;
-}
 
 .patata{
     position: relative;
@@ -129,14 +157,6 @@ ul li {
     font-size: 25px;
 }
 
-.lista{
-    display: inline;
-    position: relative;
-    top: -870px;
-    left: 285px;
-    font-size: 20px;
-    color: whitesmoke;
-}
 
 /* Media query para pantallas más pequeñas */
 @media (max-width: 768px) {
@@ -149,16 +169,7 @@ ul li {
     }
 }
 
-.ultimo {
-    font-size: 50px;
-    position: relative;
-    top: 90px;
-    margin-left: auto;
-    margin-right: auto;
-    color: rgb(148, 53, 53);
-    max-width: 50%;
-    transform: translateX(23%);
-}
+
 
 .text {
     position: absolute;
@@ -184,10 +195,5 @@ div p{
     filter: brightness(50%);
 }
 
-.burger{
-    position: relative; 
-    left: 0px; 
-    top: -400px;
-}
 
 </style>

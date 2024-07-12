@@ -2,7 +2,7 @@
 import Barra from "../components/barra.astro";
 import { Image } from "astro:assets";
 import checo from "../../src/images/Seasons/checo.jpg";
-import Lista from "../components/componenteseason/lista.astro";
+import "../components/season.css"
 
 
 ---
@@ -17,34 +17,54 @@ import Lista from "../components/componenteseason/lista.astro";
 
 <div>
     <Image src={checo} alt="checo pere" height={1000}/>
-    <p style="position: absolute; top: 40%; left: 40%; color: rgb(255, 255, 255); font-size: 75px;">
+    <p style="position: absolute; top: 40%; left: 40%; height: auto; color: rgb(255, 255, 255); font-size: 75px;">
       Season
     </p>
 </div>
 
-<h1 style="position: relative; left: 38%;">Tabla de Conductores</h1>
+
 <body>
-    <Lista number="1" name="Max Verstappen"  Constructor="Red bull" points="237" ></Lista>
-    <Lista number="2" name="lando Norris"  Constructor="Mclaren" points="156" ></Lista>
-    <Lista number="3" name="Chares leclerc"  Constructor="Ferrari" points="150" ></Lista>
-    <Lista number="4" name="Carlos Sainz"  Constructor="ferrari" points="135" ></Lista>
-    <Lista number="5" name="Sergio Perez"  Constructor="Red bull" points="118" ></Lista>
-    <Lista number="6" name="Oscar Piastri"  Constructor="Mclaren" points="112" ></Lista>
-    <Lista number="7" name="George Russell"  Constructor="Mercedes" points="111" ></Lista>
-    <Lista number="8" name="Lewis Hamilton"  Constructor="Mercedes" points="85" ></Lista>
-    <Lista number="9" name="Fernando Alonso"  Constructor="Aston Martin" points="41" ></Lista>
-    <Lista number="10" name="Yuki Tsunoda"  Constructor="RB" points="19" ></Lista>
-    <Lista number="11" name="Lance Stroll"  Constructor="Aston Martin" points="17" ></Lista>
-    <Lista number="12" name="Nico Hulenberg"  Constructor="Haas" points="14" ></Lista>
-    <Lista number="13" name="Daniel Ricciardo"  Constructor="RB" points="11" ></Lista>
-    <Lista number="14" name="Oliver Bearman"  Constructor="Ferrari" points="6" ></Lista>
-    <Lista number="15" name="Pierre Gasly"  Constructor="Alpine" points="6" ></Lista>
-    <Lista number="16" name="Kevin Magnussen"  Constructor="Haas" points="5" ></Lista>
-    <Lista number="17" name="Esteba Ocon"  Constructor="Apline" points="3" ></Lista>
-    <Lista number="18" name="Alexander Albon"  Constructor="Williams" points="2" ></Lista>
-    <Lista number="19" name="Zhou Guanyu"  Constructor="Kick Sauber" points="0" ></Lista>
-    <Lista number="20" name="Valtteri Bottas"  Constructor="Kick Sauber" points="0" ></Lista>
-    <Lista number="21" name="Logan Sargeant"  Constructor="Williams" points="0" ></Lista>
+    <div class="container">
+        <h1>Clasificación de Pilotos de F1 2024</h1>
+        <div id="standings" class="standing-list"></div>
+    </div>
+    <script>
+        let standings;
+
+fetch('https://ergast.com/api/f1/current/driverStandings.json')
+    .then(response => response.json())
+    .then(data => {
+        standings = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        displayStandings(standings);
+    });
+
+const fetchDriverDetails = (driverId) => {
+    return fetch(`https://ergast.com/api/f1/drivers/${driverId}.json`)
+        .then(response => response.json())
+        .then(data => {
+            return data.MRData.DriverTable.Drivers[0];
+        });
+}
+
+const displayStandings = async (standings) => {
+    const standingsContainer = document.getElementById('standings');
+    for (let standing of standings) {
+        let driverDetails = await fetchDriverDetails(standing.Driver.driverId);
+        let standingDiv = document.createElement('div');
+        standingDiv.className = 'standing';
+        standingDiv.innerHTML = `
+            <h3>${driverDetails.givenName} ${driverDetails.familyName}</h3>
+
+            <p>Posición: ${standing.position}</p>
+            <p>Puntos: ${standing.points}</p>
+            <p>Nacionalidad: ${driverDetails.nationality}</p>
+            <p>Constructor: ${standing.Constructors[0].name}</p>
+        `;
+        standingsContainer.appendChild(standingDiv);
+    }
+}
+
+    </script>
 </body>
 
 

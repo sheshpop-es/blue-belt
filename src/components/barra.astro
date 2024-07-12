@@ -1,44 +1,82 @@
 ---
 import { Image } from 'astro:assets';
-import logo from "../../src/images/logof1.png";
+import logo from "../../src/images/logo.png"
 ---
-
 <body>
-    <ul>
-        <Image src={logo} alt="f1 logo" height={25} />
-        <button class="menu">abrir</button>
-        <li><a href="/">Home </a></li>
-        <li><a href="/seasons">Season</a></li>
-        <li><a href="/teams">Constructors </a></li>
-        <li><a href="/drivers">Drivers</a></li>
-        <li><a href="/calendar">Calendario</a></li>
-        <li><a href="/about">about us</a></li>
-        </form>
-    </ul>
+    <nav class="navbar">
+        <div class="burger-menu" id="burger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <Image src={logo} alt="f1 logo" height={60} />
+            <li><a href="/">Home </a></li>
+            <li><a href="/seasons">Season</a></li>
+            <li><a href="/teams">Constructors </a></li>
+            <li><a href="/drivers">Drivers</a></li>
+            <li><a href="/calendar">Calendario</a></li>
+            <li><a href="/about">about us</a></li>
+        </ul>
+    </nav>
+    <script >document.addEventListener('DOMContentLoaded', () => {
+        const burgerMenu = document.getElementById('burger-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        burgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    });
+    </script>
 </body>
-  
+</html>
+
 <style>
-* {
-    padding: 0;
-    margin: 0;
+    body {
     font-family: Helvetica;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-image {
-    padding: 100px;
-}
-body{
-      
-  }
-ul{
+
+.navbar {
     list-style: none;
     background-color: red;
     text-align: start;
 }
-ul li{
+.navbar ul Image{
+    position: relative;
+    top: 20%;
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.burger-menu .line {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
     display: inline-block;
     position: relative;
 }
-ul li a{
+
+.nav-links a {
     display: block;
     padding: 20px 20px;
     font-size: 20px;
@@ -46,72 +84,36 @@ ul li a{
     text-decoration: none;
     text-align: start;
 }
-  
-ul li a:hover{
+
+.nav-links a:hover{
     background: #222;
     transition: .9s;
 }
-form {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-}
-  
-input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px; /* Ajusta el ancho según tus necesidades */
-}
-  
-button {
-    background-color: #0074D9;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-img {
-    max-width: 100%;
-    height: auto;
-    filter: brightness(50%);
-}
-  
-.contenedor {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-}
+
+@media (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+    }
     
-.texto-encima {
-    position: absolute;
-    top: 400px;
-    left: 585px;
-    height: auto;
-    color: white;
-    font: Helvetica;
-    font-size: 100px;
-      /* Puedes ajustar las coordenadas según tus necesidades */
-}
-  
-.menu {
-    display: none;
-}
-  
-@media screen and (max-width: 750px) {
-    ul li a{
-          display: none;
-     }
-    ul form{
-          display: none;
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #ff0000;
+        text-align: center;
     }
-    .menu{
-        display: block;
-        padding: 10px 20px;
+
+
+    .nav-links li {
+        margin: 10px 0;
     }
- }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
 </style>

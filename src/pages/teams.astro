@@ -2,49 +2,125 @@
 import Barra from "../components/barra.astro";
 import { Image } from "astro:assets";
 import Team from "../../src/images/Teams/teams2.jpg";
+import Alpine from "../../src/images/Imagenes_carros/Alpine.png";
+import AM from "../../src/images/Imagenes_carros/Aston_Martin.png";
+import Ferrari from "../../src/images/Imagenes_carros/Ferrari.png";
+import Hass from "../../src/images/Imagenes_carros/Haas.png";
+import Kick from "../../src/images/Imagenes_carros/Kick_Sauber.png";
+import Mclaren from "../../src/images/Imagenes_carros/Mclaren.png";
+import Mercedes from "../../src/images/Imagenes_carros/Mercedes.png";
+import RedBull from "../../src/images/Imagenes_carros/Red_Bull.png";
+import Williams from "../../src/images/Imagenes_carros/Williams.png";
+import RB from "../../src/images/Imagenes_carros/R_B.png";
+import Rectagunlo from "../components/componenteteams/rectagunlo.astro";
 ---
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content={Astro.generator}>
-    <title>F1 unofficial page</title>
-</head>
-<Barra />
-<div>
-    <div style="position: relative; height: 50%;">
-        <Image src={Team} alt="teams"/>
-        <p style="position: absolute; top: 30%; left: 35%; color: rgb(255, 255, 255); font-size: 75px;">
-          Constructors
-        </p>
+
+<Barra></Barra>
+
+<div class="container">
+    <div class="image-container">
+        <Image class="teams" src={Team} alt="teams"/>
+        <p class="title">Constructors</p>
+    </div>
+    
+</div>
+
+<div class="infowilliams">
+    <Rectagunlo nombre="Williams"></Rectagunlo>
+    <Image src={Williams} alt="Williams"/>
+    <div class="info-rect">
+        <p>Williams, impulsado por Sir Frank Williams, creció desde sus inicios humildes hasta convertirse en un gigante de la Fórmula 1 junto a Ferrari y McLaren. Durante cuatro décadas, acumularon victorias y campeonatos, formando grandes talentos. Tras la venta a Dorilton Capital en 2020, comienza una nueva era para el equipo.</p>
     </div>
 </div>
 
 <div>
+    <div class="Alpine"></div>
+    <Rectagunlo nombre="alpine"></Rectagunlo>
+    <Image src={Alpine} alt="alpine"/>
+</div>
 
+<div class="Kick">
+    <Rectagunlo nombre="Kick"></Rectagunlo>
+    <Image src={Kick} alt="kick"/>
+</div>
+
+<div class="hass">
+    <Rectagunlo nombre="Hass"></Rectagunlo>
+    <Image src={Hass} alt="hass"/>
+</div>
+
+<div class="mercedes">
+    <Rectagunlo nombre="Mercedes"></Rectagunlo>
+    <Image src={Mercedes} alt="mercedes"/>
+</div>
+
+<div class="red-bull">
+    <Rectagunlo nombre="RedBull"></Rectagunlo>
+    <Image src={RedBull} alt="red-bull"/>
+</div>
+
+<div class="RB">
+    <Rectagunlo nombre="RB"></Rectagunlo>
+    <Image src={RB} alt="RB"/>
+</div>
+
+<div class="Ferrari">
+    <Rectagunlo nombre="Ferrari"></Rectagunlo>
+    <Image src={Ferrari} alt="Ferrari"/>
+</div>
+
+<div class="AM">
+    <Rectagunlo nombre="Aston martin"></Rectagunlo>
+    <Image src={AM} alt="AM"/>
+</div>
+
+<div class="Mclaren">
+    <Rectagunlo nombre="Mclaren"></Rectagunlo>
+    <Image src={Mclaren} alt="Mclaren"/>
 </div>
 
 <style>
-    div p{
-        font: Helvetica;
-        font-size: 100px;
+    .container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
     }
-    img {
+
+    .image-container {
+        position: relative;
+    }
+
+    .title {
+        position: absolute;
+        top: 30%;
+        left: 35%;
+        color: rgb(255, 255, 255);
+        font-size: 75px;
+    }
+
+    .info-rect {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        margin-left: 20px;
+        border-radius: 10px;
+        max-width: 300px;
+    }
+
+    .teams {
         max-width: 100%;
         height: auto;
         filter: brightness(50%);
     }
-body{
-    background-color: red;
-    williams{
-        <div style="position: relative; height: 10%;">
-        <Image src={Team} alt="teams"/>
 
+    body {
+        background-color: #df4d49;
     }
 
-
-
-
+    .info-rect p {
+        margin: 0;
+        font-family: Helvetica;
+        font-size: 16px;
+        color: #333
     }
-
+    
 </style>
