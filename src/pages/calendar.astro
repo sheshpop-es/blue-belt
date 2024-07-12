@@ -1,4 +1,62 @@
 ---
 import Barra from "../components/barra.astro"
+import "../components/calendario.css"
 ---
 <Barra></Barra>
+
+<body>
+    <div class="container">
+        <h1>Fechas de las Carreras de F1</h1>
+        <div id="races" class="race-list"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let fechas;
+
+// Obtener las fechas de las carreras del año actual
+fetch('https://ergast.com/api/f1/current.json')
+    .then(response => response.json())
+    .then(data => {
+        fechas = data.MRData.RaceTable.Races;
+        displayRaces(fechas);
+    })
+    .catch(error => {
+        console.error('Error fetching current season races:', error);
+    });
+
+// Función para obtener los detalles del circuito por su ID
+const fetchRaceDetails = (circuitId) => {
+    return fetch(`https://ergast.com/api/f1/current/circuits/${circuitId}.json`)
+        .then(response => response.json())
+        .then(data => {
+            return data.MRData.CircuitTable.Circuits[0];
+        })
+        .catch(error => {
+            console.error(`Error fetching details for circuit ${circuitId}:`, error);
+        });
+}
+
+// Función para mostrar las carreras en el DOM
+const displayRaces = async (races) => {
+    const racesContainer = document.getElementById('races');
+    for (let race of races) {
+        try {
+            let raceDetails = await fetchRaceDetails(race.Circuit.circuitId);
+            let raceDiv = document.createElement('div');
+            raceDiv.className = 'race';
+            raceDiv.innerHTML = `
+                <h3>${race.raceName}</h3>
+                <p>Fecha: ${race.date}</p>
+                <p>Circuito: ${race.Circuit.circuitName}</p>
+                <img src="src/images/circuitos/${race.Circuit.circuitId}.jpg" alt="${race.Circuit.circuitName}">
+                <p>Localización: ${race.Circuit.Location.locality}, ${race.Circuit.Location.country}</p>
+            `;
+            racesContainer.appendChild(raceDiv);
+        } catch (error) {
+            console.error('Error displaying race:', error);
+        }
+    }
+}
+
+    </script>
+</body>

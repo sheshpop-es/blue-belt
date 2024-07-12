@@ -1,19 +1,19 @@
 ---
 import Barra from "../components/barra.astro"
-import Image from "astro/components/Image.astro";
+import '../components/styles.css';
 ---
 <Barra></Barra>
-
+<html>
 <body>
   <div class="container">
-      <h1>Pilotos de F1</h1>
-      <div id="drivers-2024" class="driver-list" style="">
-          <h2>Pilotos de 2024</h2>
+      <h1 >Pilotos de F1</h1>
+      <div id="drivers-2024" class="driver-list">
+          <h2 >Pilotos de 2024</h2>
       </div>
-      <div id="drivers-2023" class="driver-list">
+      <div id="drivers-2023" class="driver-list" style="margin-bottom: 40px;">
           <h2>Pilotos de 2023</h2>
       </div>
-      <div id="drivers-2022" class="driver-list">
+      <div  id="drivers-2022" class="driver-list">
           <h2>Pilotos de 2022</h2>
       </div>
   </div>
@@ -40,7 +40,7 @@ const displayDrivers = async () => {
             let driverDiv = document.createElement('div');
             driverDiv.className = 'driver';
             driverDiv.innerHTML = `
-                <img style="width: 10%; height: auto; border-radius: 5px;" src="src/images/Drivers/${driver.driverId}.jpg" alt="${driver.givenName} ${driver.familyName}">
+                <img style="width: 70%; height: auto; border-radius: 5px;" src="src/images/Drivers/${driver.driverId}.jpg" alt="${driver.givenName} ${driver.familyName}">
                 <h3>${driver.givenName} ${driver.familyName}</h3>
                 <p>Fecha de Nacimiento: ${driver.dateOfBirth}</p>
                 <p>Nacionalidad: ${driver.nationality}</p>
@@ -55,45 +55,3 @@ displayDrivers();
 </body>
 </html>
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
-.driver-list {
-    margin-bottom: 40px;
-}
-.driver-list h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.driver-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.driver {
-    background-color: white;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-}
-.driver img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-</style>
